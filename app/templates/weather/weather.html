@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天気アプリ</title>
+</head>
+<body>
+    <h1>天気アプリ</h1>
+    <form method="POST">
+        <select name="city">
+            <option value="Tokyo" {% if city == "Tokyo" %}selected{% endif %}>東京</option>
+            <option value="New York" {% if city == "New York" %}selected{% endif %}>ニューヨーク</option>
+            <option value="London" {% if city == "London" %}selected{% endif %}>ロンドン</option>
+            <option value="Paris" {% if city == "Paris" %}selected{% endif %}>パリ</option>
+            <!-- その他の都市を追加 -->
+        </select>
+        <input type="submit" value="天気を表示">
+    </form>
+    {% if weather_data %}
+    <h2>{{ weather_data.name }}</h2>
+    <p>天気: {{ weather_data.weather[0].main }}</p>
+    <p>気温: {{ weather_data.main.temp }}℃</p>
+    {% endif %}
+</body>
+</html>

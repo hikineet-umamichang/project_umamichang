@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wolf Settings</title>
+</head>
+<body>
+    <h1>Word Wolf Game Settings</h1>
+    <form method="POST">
+        <label for="num_players">Number of players:</label>
+        <select name="num_players" id="num_players">
+            {% for num in range(4, 11) %}
+                <option value="{{ num }}">{{ num }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="difficulty">Difficulty:</label>
+        <select name="difficulty" id="difficulty">
+            {% for diff in range(1, 11) %}
+                <option value="{{ diff }}">{{ diff }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="genre">Genre:</label>
+        <input type="text" name="genre" id="genre" maxlength="10" required>
+        <br>
+        <input type="submit" value="Generate">
+    </form>
+</body>
+</html>

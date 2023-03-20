@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wolf Reveal</title>
+</head>
+<body>
+    <h1>Word Wolf Reveal</h1>
+    {% for idx, theme in enumerate(themes) %}
+        <div id="theme-{{ idx }}" style="display: none;">
+            <h2>Theme: {{ theme }}</h2>
+        </div>
+    {% endfor %}
+    <button onclick="reveal_theme()">Reveal</button>
+    <button onclick="hide_theme()">Next Player</button>
+    <form method="POST" style="margin-top: 20px;">
+        <input type="submit" value="Reset">
+    </form>
+    <script>
+        let current_theme = 0;
+        let num_players = {{ num_players }};
+        let num_themes = {{ themes|length }};
+
+        function reveal_theme() {
+            document.getElementById(`theme-${current_theme}`).style.display = 'block';
+        }
+
+        function hide_theme() {
+            document.getElementById(`theme-${current_theme}`).style.display = 'none';
+            current_theme = (current_theme + 1) % num_players;
+            if (current_theme >= num_themes) {
+                current_theme = 0;
+            }
+        }
+    </script>
+</body>
+</html>
