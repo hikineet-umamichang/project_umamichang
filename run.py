@@ -1,7 +1,9 @@
 from app import create_app
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
+
 
 app = create_app()
 

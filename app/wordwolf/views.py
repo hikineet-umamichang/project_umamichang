@@ -9,42 +9,47 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def generate_themes(genre, difficulty):
+    # print(os.getcwd())
+    with open(os.path.dirname(__file__)+"/input.txt", "r", encoding="utf-8") as file:
+        input_text = file.read()
+
+    input_text = input_text.replace("{{genre}}", genre).replace("{{difficulty}}", difficulty)
+    # print(input_text)
+
     # Call OpenAI API to generate themes
-    """response = openai.Completion.create(
-        engine="davinci-codex",
-        prompt=f"Generate a pair of related themes for Word Wolf game with genre '{genre}' and difficulty {difficulty}. One theme for citizens and one slightly different theme for the wolf. Separate them with a newline.",
-        max_tokens=50,
-        n=1,
-        stop=None,
-        temperature=0.8,
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": input_text}],
     )
 
-    themes = response.choices[0].text.strip().split("\n")"""
-    themes=["いちご","りんご"]
+    try:
+        themes = list(response.choices[0]["message"]["content"].strip().split())
+    except:
+        return ["生成失敗", "生成失敗"]
     return themes
 
 
 @wordwolf.route("/", methods=["GET", "POST"])
 def settings():
-    if request.method == "POST":
-        num_players = int(request.form["num_players"])
-        difficulty = int(request.form["difficulty"])
-        genre = request.form["genre"]
-        themes = generate_themes(genre, difficulty)
-        return redirect(
-            url_for("wordwolf.reveal", themes=themes, num_players=num_players)
-        )
     return render_template("wordwolf/settings.html")
 
 
 @wordwolf.route("/reveal", methods=["GET", "POST"])
 def reveal():
-    themes = request.args.get("themes", "").split(",")
-    num_players = int(request.args.get("num_players", "4"))
-
     if request.method == "POST":
-        return redirect(url_for("wordwolf.settings"))
+        num_players = int(request.form.get("num_players"))
+        difficulty = request.form.get("difficulty")
+        genre = request.form.get("genre")
 
-    return render_template(
-        "wordwolf/reveal.html", themes=themes, num_players=num_players, enumerate=enumerate
-    )
+        themes = generate_themes(genre, difficulty)
+        wolf_index = random.randint(0, int(num_players) - 1)
+        themes_list = [themes[0] if i == wolf_index else themes[1] for i in range(int(num_players))]
+
+        return render_template(
+            "wordwolf/reveal.html",
+            themes=themes_list,
+            num_players=num_players,
+            enumerate=enumerate,
+        )
+
+    return redirect(url_for("wordwolf.reveal"))

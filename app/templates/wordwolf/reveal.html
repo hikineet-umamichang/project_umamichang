@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Wolf Reveal</title>
+    <style>
+        #word-display {
+            min-height: 2em;
+        }
+    </style>
+    <script>
+        let currentIndex = 0;
+        let themes_list = {{ themes|tojson|safe }};
+
+        function revealTheme() {
+            document.getElementById("word-display").innerHTML = themes_list[currentIndex];
+        }
+
+        function hideWord() {
+            document.getElementById("word-display").innerHTML = "";
+        }
+
+        function nextPlayer() {
+            currentIndex++;
+            if (currentIndex >= themes_list.length) {
+                currentIndex = 0;
+            }
+            hideWord();
+            document.getElementById("player-number").innerHTML = currentIndex + 1;
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("hide-word").addEventListener("click", revealTheme);
+            document.getElementById("next-word").addEventListener("click", nextPlayer);
+            document.getElementById("player-number").innerHTML = currentIndex + 1;
+        });
+    </script>
 </head>
+
 <body>
     <h1>Word Wolf Reveal</h1>
-    {% for idx, theme in enumerate(themes) %}
-        <div id="theme-{{ idx }}" style="display: none;">
-            <h2>Theme: {{ theme }}</h2>
-        </div>
-    {% endfor %}
-    <button onclick="reveal_theme()">Reveal</button>
-    <button onclick="hide_theme()">Next Player</button>
-    <form method="POST" style="margin-top: 20px;">
-        <input type="submit" value="Reset">
-    </form>
-    <script>
-        let current_theme = 0;
-        let num_players = {{ num_players }};
-        let num_themes = {{ themes|length }};
-
-        function reveal_theme() {
-            document.getElementById(`theme-${current_theme}`).style.display = 'block';
-        }
-
-        function hide_theme() {
-            document.getElementById(`theme-${current_theme}`).style.display = 'none';
-            current_theme = (current_theme + 1) % num_players;
-            if (current_theme >= num_themes) {
-                current_theme = 0;
-            }
-        }
-    </script>
+    <h2>Player: <span id="player-number"></span></h2>
+    <div id="word-display">
+        <!-- お題を表示 -->
+    </div>
+    <button id="hide-word">Reveal</button>
+    <button id="next-word">Next Player</button>
+    <br>
+    <a href="{{ url_for('wordwolf.settings') }}">Back to settings</a>
 </body>
+
 </html>

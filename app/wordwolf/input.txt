@@ -1,0 +1,10 @@
+ワードウルフのお題を考えて、２つの言葉を空白区切りで出力してください。ジャンルと言葉の難しさ（1〜10）は私が指定します。
+
+例)
+“””
+Input : genre[冷たいもの],difficulty[5]
+Output : 雪 氷
+“””
+
+Input : genre[{{genre}}],difficulty[{{difficulty}}]
+Output :

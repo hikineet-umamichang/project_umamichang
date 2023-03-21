@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Word Wolf Game Settings</h1>
-    <form method="POST">
+    <form action="/wordwolf/reveal" method="POST">
         <label for="num_players">Number of players:</label>
         <select name="num_players" id="num_players">
             {% for num in range(4, 11) %}
