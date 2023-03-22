@@ -2,7 +2,7 @@
 
 例)
 “””
-Input : genre[冷たいもの],difficulty[5],distance[3]
+Input : genre[冷たいもの],difficulty[50],distance[30]
 Output : 雪 氷
 “””
 
