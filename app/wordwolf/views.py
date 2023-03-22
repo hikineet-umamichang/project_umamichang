@@ -8,12 +8,18 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-def generate_themes(genre, difficulty):
+def generate_themes(genre, difficulty, distance):
     # print(os.getcwd())
-    with open(os.path.dirname(__file__)+"/input.txt", "r", encoding="utf-8") as file:
+    if len(genre)>10:
+        return ["生成失敗", "生成失敗"]
+    with open(os.path.dirname(__file__) + "/input.txt", "r", encoding="utf-8") as file:
         input_text = file.read()
 
-    input_text = input_text.replace("{{genre}}", genre).replace("{{difficulty}}", difficulty)
+    input_text = (
+        input_text.replace("{{genre}}", genre)
+        .replace("{{difficulty}}", difficulty)
+        .replace("{{distance}}", distance)
+    )
     # print(input_text)
 
     # Call OpenAI API to generate themes
@@ -39,11 +45,14 @@ def reveal():
     if request.method == "POST":
         num_players = int(request.form.get("num_players"))
         difficulty = request.form.get("difficulty")
+        distance = request.form.get("distance")
         genre = request.form.get("genre")
 
-        themes = generate_themes(genre, difficulty)
+        themes = generate_themes(genre, difficulty, distance)
         wolf_index = random.randint(0, int(num_players) - 1)
-        themes_list = [themes[0] if i == wolf_index else themes[1] for i in range(int(num_players))]
+        themes_list = [
+            themes[0] if i == wolf_index else themes[1] for i in range(int(num_players))
+        ]
 
         return render_template(
             "wordwolf/reveal.html",

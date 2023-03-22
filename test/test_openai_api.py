@@ -39,7 +39,7 @@ def generate_themes(genre, difficulty, distance):
 for _ in range(3):
     themes = generate_themes(genre, difficulty,distance)
     wolf_index = random.randint(0, int(num_players) - 1)
-    themes_list = [theme[0] if i == wolf_index else theme[1] for i in range(int(num_players))]
+    themes_list = [themes[0] if i == wolf_index else themes[1] for i in range(int(num_players))]
     print(themes_list)
 
 

@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Wolf Settings</title>
+    <title>Word Wolf by gpt</title>
 </head>
+
 <body>
-    <h1>Word Wolf Game Settings</h1>
+    <h1>chatgptがワードウルフのお題を作ってくれるツール</h1>
     <form action="/wordwolf/reveal" method="POST">
-        <label for="num_players">Number of players:</label>
+        <label for="num_players">プレーヤーの人数:</label>
         <select name="num_players" id="num_players">
             {% for num in range(4, 11) %}
-                <option value="{{ num }}">{{ num }}</option>
+            <option value="{{ num }}">{{ num }}</option>
             {% endfor %}
         </select>
         <br>
-        <label for="difficulty">Difficulty:</label>
-        <select name="difficulty" id="difficulty">
-            {% for diff in range(1, 11) %}
-                <option value="{{ diff }}">{{ diff }}</option>
-            {% endfor %}
-        </select>
+        <label for="difficulty">ことばの難しさ:</label>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="50" class="slider" id="difficulty" name="difficulty">
+            <span class="slider-value" id="sliderValue1">50</span>
+        </div>
         <br>
-        <label for="genre">Genre:</label>
+        <label for="distance">ことばの離れ具合:</label>
+        <div class="slider-container">
+            <input type="range" min="1" max="100" value="50" class="slider" id="distance" name="distance">
+            <span class="slider-value" id="sliderValue2">50</span>
+        </div>
+        <br>
+        <label for="genre">ジャンル:</label>
         <input type="text" name="genre" id="genre" maxlength="10" required>
         <br>
-        <input type="submit" value="Generate">
+        <input type="submit" value="実行！">
     </form>
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const sliders = document.getElementsByClassName("slider");
+            const outputs = document.getElementsByClassName("slider-value");
+
+            for (let i = 0; i < sliders.length; i++) {
+                sliders[i].addEventListener("input", function () {
+                    outputs[i].innerHTML = this.value;
+                });
+
+                // 初期値を設定する
+                outputs[i].innerHTML = sliders[i].value;
+            }
+        });
+
+    </script>
 </body>
+
 </html>
