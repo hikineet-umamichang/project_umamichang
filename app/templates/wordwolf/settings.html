@@ -5,17 +5,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Wolf by gpt</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        .box select {
+            width: 100px;
+            font-size: 20px;
+        }
+
+        .execute-button {
+            font-size: 20px;
+        }
+
+        .input-box {
+            font-size: 20px;
+        }
+
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .popup {
+            width: 90%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            margin: 50px auto;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .close-button {
+            background-color: #ff5b5b;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+            margin-top: -10px;
+            margin-right: -10px;
+        }
+
+        /* ジャンル入力フィールド６：キャンセルボタン変更＋プルダウンメニュー＋キャンセルボタンポインター付き  */
+        #clearbutton6::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            /* デフォルトのサーチキャンセルボタンを非表示にする場合 */
+            cursor: pointer;
+            background-image: url(./img/x-icon-gray-3.png);
+            /* デフォルトのサーチキャンセルボタンを非表示にすること */
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-right: 0px;
+            width: 10px;
+            height: 10px;
+            /* キャンセルボタンのサイズを個別に設定する場合 */
+        }
+
+        input {
+            position: relative;
+            border: 1px solid gray;
+            border-radius: 0px;
+            padding: 5px;
+            ;
+            font-size: 100%;
+            margin: 2px;
+
+        }
+    </style>
 </head>
 
 <body>
     <h1>chatgptがワードウルフのお題を作ってくれるツール</h1>
     <form action="/wordwolf/reveal" method="POST">
         <label for="num_players">プレーヤーの人数:</label>
-        <select name="num_players" id="num_players">
-            {% for num in range(4, 11) %}
-            <option value="{{ num }}">{{ num }}</option>
-            {% endfor %}
-        </select>
+        <div class="box">
+            <select name="num_players" id="num_players">
+                {% for num in range(4, 11) %}
+                <option value="{{ num }}">{{ num }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
         <br>
         <label for="difficulty">ことばの難しさ:</label>
         <div class="slider-container">
@@ -29,10 +116,48 @@
             <span class="slider-value" id="sliderValue2">50</span>
         </div>
         <br>
-        <label for="genre">ジャンル:</label>
-        <input type="text" name="genre" id="genre" maxlength="10" required>
+        <!-- <label for="genre">ジャンル:</label>
+        <input class="input-box" type="text" name="genre" id="genre" maxlength="15" required> -->
         <br>
-        <input type="submit" value="実行！">
+
+        <label for="genre">ジャンル:</label>
+        <input type="search" id="genre" size="25" name="genre" maxlength="10" list="genre-sample" required>
+        <datalist id="genre-sample">
+            <option value="野菜"></option>
+            <option value="スポーツ"></option>
+            <option value="青いもの"></option>
+            <option value="都道府県"></option>
+            <option value="かわいい生き物"></option>
+            <option value="すきな地域政党"></option>
+        </datalist>
+
+        <br>
+        <input class="execute-button" type="submit" value="実行！">
+        <br>
+        <br>
+        <button onclick="showPopup()">使い方を見る</button>
+        <div class="popup-container" id="popup-container">
+            <div class="popup">
+                <button class="close-button" onclick="hidePopup()">閉じる</button>
+                <h2>アプリの使い方</h2>
+                <p>こんにちは！「ワードウルフ補助アプリ」を使って、楽しくワードウルフゲームを遊ぼう！<br>
+                    <br>
+                    【アプリの使い方】<br>
+                    1. まずアプリを開いて、人数、ことばの難しさ、ことばの離れ具合、お題のジャンルを設定しよう。<br>
+                    2. 設定が完了したら、「実行！」を押すとお題が表示されるよ！<br>
+                    3. 自分のお題を見たら、次の人にスマートフォンを回して、「次の人へ回すボタン」を押そう。そうすると、お題が隠れて次のお題が表示されるよ。<br>
+                    4. みんながお題を確認したら、ワードウルフの議論を始めよう！<br>
+                    5. 議論が終わったら、投票を行い、最も狼だと思われる人に票を入れよう。<br>
+                    6. 最多票を集めた人が、自分のお題を発表するよ。同じお題の人がいれば、手を挙げてね。<br>
+                    7. 手を挙げた人がいたら、市民側の負け。いなかったら、狼がばれちゃうけど、市民側のお題を当てられたら狼側の逆転勝利だ！<br>
+                    <br>
+                    途中でゲームをやり直したいときは、「リセット」ボタンを押してね。これでゲームがリセットされるよ。<br>
+                    <br>
+                    さあ、友達や家族と一緒に、「ワードウルフ補助アプリ」でワードウルフを楽しもう！わからないことがあったら、この説明を読んでね。
+                </p>
+            </div>
+        </div>
+
     </form>
     <script>
         window.addEventListener("DOMContentLoaded", (event) => {
@@ -48,7 +173,15 @@
                 outputs[i].innerHTML = sliders[i].value;
             }
         });
+        const popupContainer = document.getElementById("popup-container");
 
+        function showPopup() {
+            popupContainer.style.display = "block";
+        }
+
+        function hidePopup() {
+            popupContainer.style.display = "none";
+        }
     </script>
 </body>
 

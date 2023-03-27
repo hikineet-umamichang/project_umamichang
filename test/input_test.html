@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"> <!-- HTMLソースコード utf-8 必須 -->
+    <title><input type="search">のキャンセルボタン（Ｘアイコン）<br>をカスタマイズする - キャンセルボタンの変更、表示位置の変更など -</title>
+    <style>
+        /* inputフィールド共通設定 */
+        input {
+            position: relative;
+            border: 1px solid gray;
+            border-radius: 0px;
+            padding: 5px;
+            ;
+            font-size: 100%;
+            margin: 2px;
+
+        }
+
+        /* 検索フィールド６：キャンセルボタン変更＋プルダウンメニュー＋キャンセルボタンポインター付き  */
+        #genre::-webkit-search-cancel-button {
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-right: 0px;
+            width: 10px;
+            height: 10px;
+            /* キャンセルボタンのサイズを個別に設定する場合 */
+        }
+    </style>
+</head>
+
+<body>
+    <h3>キャンセルボタン（Ｘマーク）のカスタマイズ デモ</h3>
+    <form action="input-search-form-disp.php" method="post" target="_blank">
+        <label for="genre">ジャンル:</label>
+        <input type="search" id="genre" size="25" name="genre" maxlength="10" list="genre-sample" required>
+        <datalist id="genre-sample">
+            <option value="野菜"></option>
+            <option value="スポーツ"></option>
+            <option value="青いもの"></option>
+            <option value="都道府県"></option>
+            <option value="かわいい生き物"></option>
+            <option value="すきな地域政党"></option>
+        </datalist>
+    </form>
+</body>
+
+</html>

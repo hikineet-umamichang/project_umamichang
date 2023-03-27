@@ -10,7 +10,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_themes(genre, difficulty, distance):
     # print(os.getcwd())
-    if len(genre) > 10:
+    if len(genre) > 15:
         return ["生成失敗", "生成失敗"]
     with open(os.path.dirname(__file__) + "/input.txt", "r", encoding="utf-8") as file:
         input_text = file.read()
