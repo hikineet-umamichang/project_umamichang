@@ -1,10 +1,11 @@
-ワードウルフのお題を考えて、２つの言葉を空白区切りで出力してください。ジャンル、言葉の難しさ（1〜100）、単語の距離（1〜100）は私が指定します。
+ワードウルフのお題を考えて、２つの言葉を空白区切りで出力してください。ジャンル(genre)、言葉の難しさ(difficulty, 1〜100）、単語の距離（distance, 1〜100）は私が指定します。
+なお、ジャンルは空白のことがあります
 
 例)
 “””
-Input : genre[冷たいもの],difficulty[50],distance[30]
-Output : 雪 氷
+Input : genre[冷たいもの], difficulty[50], distance[30]
+Output : ボールペン シャーペン
 “””
 
-Input : genre[{{genre}}],difficulty[{{difficulty}},distance[{{distance}}]]
+Input : genre[{{genre}}], difficulty[{{difficulty}}, distance[{{distance}}]]
 Output :
