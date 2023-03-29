@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <title>ホームページ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>ホームページ</h1>
+    <img src="{{ url_for('static', filename='/main/logo.png') }}">
+    <h1>ヒキニート!うまみちゃんのホームページ</h1>
     <ul>
+        <li><a href="/wordwolf">ワードウルフお題生成アプリ</a></li>
+        <li><a href="/weather">天気アプリ</a></li>
         <li><a href="#">ブログ</a></li>
         <li><a href="#">メール</a></li>
-        <li><a href="/weather">天気アプリ</a></li>
-        <li><a href="/wordwolf">ワードウルフお題生成アプリ</a></li>
     </ul>
 </body>
+
 </html>

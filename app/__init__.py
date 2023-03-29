@@ -8,6 +8,6 @@ def create_app():
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(weather_blueprint)
-    app.register_blueprint(wordwolf_blueprint, url_prefix='/wordwolf')
+    app.register_blueprint(wordwolf_blueprint, url_prefix="/wordwolf")
 
     return app

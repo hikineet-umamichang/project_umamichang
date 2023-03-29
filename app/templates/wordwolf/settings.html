@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Wolf by gpt</title>
+    <title>Word Wolf by ChatGPT</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -89,6 +90,8 @@
 
 <body>
     <h1>ChatGPTがワードウルフのお題をつくってくれるツール</h1>
+
+
     <form action="/wordwolf/reveal" method="POST">
         <label for="num_players">プレーヤーの人数:</label>
         <div class="box">
@@ -99,6 +102,21 @@
             </select>
         </div>
         <br>
+
+    <label for="genre">ジャンル:</label>
+    <input type="search" id="genre" size="25" name="genre" maxlength="10" list="genre-sample">
+    <datalist id="genre-sample">
+        <option value="野菜"></option>
+        <option value="スポーツ"></option>
+        <option value="青いもの"></option>
+        <option value="都道府県"></option>
+        <option value="かわいい生き物"></option>
+        <option value="文房具"></option>
+        <option value="花の名前"></option>
+    </datalist>
+
+    <br>
+    <br>
         <label for="difficulty">ことばの難しさ:</label>
         <div class="slider-container">
             <input type="range" min="1" max="100" value="50" class="slider" id="difficulty" name="difficulty">
@@ -114,20 +132,6 @@
         <!-- <label for="genre">ジャンル:</label>
         <input class="input-box" type="text" name="genre" id="genre" maxlength="15" required> -->
 
-        <label for="genre">ジャンル:</label>
-        <input type="search" id="genre" size="25" name="genre" maxlength="10" list="genre-sample">
-        <datalist id="genre-sample">
-            <option value="野菜"></option>
-            <option value="スポーツ"></option>
-            <option value="青いもの"></option>
-            <option value="都道府県"></option>
-            <option value="かわいい生き物"></option>
-            <option value="すきな地域政党"></option>
-            <option value="文房具"></option>
-            <option value="花の名前"></option>
-        </datalist>
-
-        <br>
         <input class="execute-button" type="submit" value="実行！">
         <br>
         <br>
@@ -148,7 +152,7 @@
                 5. 最多票を集めた人が、自分のお題を発表するよ。同じお題の人がいれば、手を挙げてね。<br>
                 6. 手を挙げた人がいたら、市民側の負け。いなかったら、狼がばれちゃうけど、市民側のお題を当てられたら狼側の逆転勝利だ！<br>
                 <br>
-                さあ、友達や家族と一緒に、「ワードウルフ補助アプリ」でワードウルフを楽しもう！わからないことがあったら、この説明を読んでね。
+                さあ、友達や家族と一緒に、「ChatGPT」でワードウルフを楽しもう！わからないことがあったら、この説明を読んでね。
             </p>
         </div>
     </div>

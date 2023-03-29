@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Wolf by gpt</title>
+    <title>Word Wolf by ChatGPT</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -15,6 +16,14 @@
 
         a {
             font-size: 16px;
+        }
+
+        .hide-button {
+            font-size: 20px;
+        }
+
+        .next-button{
+            font-size: 20px;
         }
 
         #word-display {
@@ -57,8 +66,8 @@
     <div class="word-display" id="word-display">
         <!-- お題を表示 -->
     </div>
-    <button id="hide-word">表示</button>
-    <button id="next-word">次のプレイヤー</button>
+    <button class="hide-button" id="hide-word">表示</button>
+    <button class="next-button" id="next-word">次のプレイヤー</button>
     <br>
     <br>
     <a href="{{ url_for('wordwolf.settings') }}">リセット</a>
