@@ -3,7 +3,7 @@ import requests
 from flask import render_template, request
 from . import weather
 
-API_KEY = os.environ.get('WEATHER_API_KEY') # 環境変数からAPIキーを取得
+API_KEY = os.environ.get('WEATHER_API_KEY') 
 
 def get_weather_data(city):
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric'

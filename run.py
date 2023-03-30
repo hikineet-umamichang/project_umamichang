@@ -1,7 +1,7 @@
 from app import create_app
-from dotenv import load_dotenv
+import dotenv
 
-load_dotenv()
+dotenv.load_dotenv(override=True)
 
 
 app = create_app()

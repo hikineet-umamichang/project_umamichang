@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天気アプリ</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 20px;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
+
 <body>
     <h1>天気アプリ</h1>
     <form method="POST">
         <select name="city">
-            <option value="Tokyo" {% if city == "Tokyo" %}selected{% endif %}>東京</option>
-            <option value="New York" {% if city == "New York" %}selected{% endif %}>ニューヨーク</option>
-            <option value="London" {% if city == "London" %}selected{% endif %}>ロンドン</option>
-            <option value="Paris" {% if city == "Paris" %}selected{% endif %}>パリ</option>
+            <option value="Tokyo" {% if city=="Tokyo" %}selected{% endif %}>東京</option>
+            <option value="New York" {% if city=="New York" %}selected{% endif %}>ニューヨーク</option>
+            <option value="London" {% if city=="London" %}selected{% endif %}>ロンドン</option>
+            <option value="Paris" {% if city=="Paris" %}selected{% endif %}>パリ</option>
             <!-- その他の都市を追加 -->
         </select>
         <input type="submit" value="天気を表示">
@@ -23,4 +34,5 @@
     <p>気温: {{ weather_data.main.temp }}℃</p>
     {% endif %}
 </body>
+
 </html>
