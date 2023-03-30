@@ -22,6 +22,6 @@ jobs:
       run: |
         # GCE インスタンスに接続
         # GCE インスタンスに接続し、デプロイ先ディレクトリに移動してから deploy.sh を実行
-        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null your-user@your-gce-instance-external-ip "\
+        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null g1308yuta@34.84.65.229 "\
           cd project_umamichang && \
           bash -s" < deploy.sh
