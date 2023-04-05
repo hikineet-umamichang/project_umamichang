@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block title %}「{{ tag }}」タグの記事一覧 - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container main-content bg-white">
+    <h2>「{{ tag }}」タグの記事一覧</h2>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <a href="{{ url_for('blog.post_detail',filename=post.filename) }}">{{ post.title }}</a>
+            <p><small>投稿日: {{ post.date }}</small></p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{{ pagination.links }}
+
+{% endblock %}

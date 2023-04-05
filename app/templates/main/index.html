@@ -3,34 +3,59 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}うまみちゃんの巣{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-    <title>ホームページ</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            font-size: 20px;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-
-        img {
-            max-width: 60%;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
         crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <img src="{{ url_for('static', filename='/main/logo.jpg') }}">
-    <h1>ヒキニート!うまみちゃんの巣</h1>
-    <ul>
-        <li><a href="/wordwolf">ワードウルフお題生成アプリ</a></li>
-        <li><a href="/weather">天気アプリ</a></li>
-        <li><a href="/blog">ブログ</a></li>
-        <li><a href="#">メール</a></li>
-    </ul>
+    <header>
+
+    </header>
+
+    <main>
+        <div class="container center-block  mt-5">
+            <img src="{{ url_for('static', filename='/main/logo.jpg') }}" class="img-fluid">
+            <br>
+            <h2 class="container-fluid jumbotron-container">うまみちゃんの巣</h2>
+            <ul class="list-unstyled ml-5">
+                <br>
+                <li><a href="/wordwolf">ワードウルフお題生成アプリ</a></li>
+                <br>
+                <li><a href="/weather">天気アプリ</a></li>
+                <br>
+                <li><a href="/blog">ブログ</a></li>
+                <br>
+                <li><a href="#">メール</a></li>
+            </ul>
+        </div>
+    </main>
+
+
+
+    <footer>
+        <div class="fixed-bottom mt-5 container-fluid bg-secondary">
+            <div class="row text-white">
+                <div class="col-md-8 order-md-1">
+                    <p>© 2023 Umamichang. All rights reserved.</p>
+                </div>
+                <div class="col-md-4 order-md-2">
+                    <p><a href="https://twitter.com/onnsentmg">Twitter</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

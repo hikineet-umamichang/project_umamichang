@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+
+{% block title %}{{ metadata.title }} - {{ super() }}{% endblock %}
+
+{% block content %}
+    <div class="container main-content bg-white">
+        <div class="row">
+            <div class="col">
+                <h1>{{ metadata.title }}</h1>
+                <p>{% for tag in metadata['tags'] %}
+                    <a href="{{ url_for('blog.tag_filtered', tag=tag) }}">{{ tag }}</a>
+                    {% endfor %} </p>
+                <p><small>投稿日: {{ metadata.date }}</small></p>
+                <div class="post-content">
+                    {{ content|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,35 +1,87 @@
-from flask import render_template, url_for, flash, redirect, request, abort
+from flask import render_template, request
+from flask_paginate import Pagination, get_page_parameter
 from . import blog
-from app.blog.utils import load_posts
-from datetime import datetime
+from . import utils
 
-def paginate(posts, page, per_page):
-    start = (page - 1) * per_page
-    end = start + per_page
-    return posts[start:end]
 
-# 記事一覧表示
-@blog.route('/')
-@blog.route('/page/<int:page>')
-def home(page=1):
-    posts = load_posts()
+@blog.route("/")
+def index():
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
     per_page = 10
-    paginated_posts = paginate(posts, page, per_page)
-    total_pages = (len(posts) + per_page - 1) // per_page
-    return render_template('blog/home.html', posts=paginated_posts, page=page, total_pages=total_pages)
+    posts = utils.get_posts_list()
+    page_posts = posts[(page - 1) * 10 : page * 10]
+    pagination = Pagination(
+        page=page,
+        total=len(posts),
+        search=False,
+        display_msg="<b>{total}</b> {record_name}中の <b>{start} - {end}</b> {record_name}",
+        record_name="ページ",
+        per_page=per_page,
+        css_framework="bootstrap5",
+    )
+    # print(page_posts)
 
-@blog.route('/<string:post_date>-<string:post_title>')
-def post_detail(post_date, post_title):
-    post_date = datetime.strptime(post_date, "%Y-%m-%d")
-    posts = load_posts()
+    return render_template(
+        "blog/index.html", page_posts=page_posts, pagination=pagination
+    )
 
-    post = None
-    for p in posts:
-        if p.date_posted.date() == post_date.date() and p.title == post_title:
-            post = p
-            break
 
-    if post is None:
-        abort(404)
+@blog.route("/<string:filename>")
+def post_detail(filename):
+    filename=filename+".md"
+    metadata = utils.parse_metadata(filename)
+    content = utils.load_post(filename)
+    # print(metadata)
+    # print(content)
+    return render_template("blog/post.html", content=content, metadata=metadata)
 
-    return render_template('blog/post_detail.html', post=post)
+
+@blog.route("/tag-<string:tag>")
+def tag_filtered(tag):
+    target_posts=utils.get_posts_by_tag(tag)
+    # print(target_posts)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 10
+    page_posts = target_posts[(page - 1) * 10 : page * 10]
+    pagination = Pagination(
+        page=page,
+        total=len(target_posts),
+        search=False,
+        display_msg="<b>{total}</b> {record_name}中の <b>{start} - {end}</b> {record_name}",
+        record_name="ページ",
+        per_page=per_page,
+        css_framework="bootstrap5",
+    )
+
+    return render_template("blog/tag_filtered.html", tag=tag,posts=page_posts,pagination=pagination)
+
+
+@blog.context_processor
+def inject_recent_posts_and_tags():
+    return {
+        'recent_posts': utils.get_recent_posts(),
+        'tags': utils.get_tags(),
+    }
+
+
+@blog.route("/tags")
+def tags():
+    tags=utils.get_tags()
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 10
+    page_tags = tags[(page - 1) * 10 : page * 10]
+    pagination = Pagination(
+        page=page,
+        total=len(tags),
+        search=False,
+        display_msg="<b>{total}</b> {record_name}中の <b>{start} - {end}</b> {record_name}",
+        record_name="ページ",
+        per_page=per_page,
+        css_framework="bootstrap5",
+    )
+
+    return render_template("blog/tags.html",tags=page_tags,pagination=pagination)
+
