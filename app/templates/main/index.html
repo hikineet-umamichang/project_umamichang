@@ -20,52 +20,54 @@
     </header>
 
     <main>
-        <div class="row">
-            <div class="container col-md-6">
-                <img src="{{ url_for('static', filename='/main/logo.jpg') }}" class="img-fluid img-thumbnail">
-                <div class="text-center">
-                    <h2 class="m-2">うまみちゃんの巣</h2>
-                    <div class="container-fluid">
-                        <section>
-                            <!-- home -->
-                            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="/"
-                                role="button" data-mdb-ripple-color="dark"><i class="bi bi-house-fill"></i></i></a>
-                            <!-- twitter -->
-                            <a class="btn btn-link btn-floating btn-lg text-dark m-1"
-                                href="https://twitter.com/onnsentmg" role="button" data-mdb-ripple-color="dark"><i
-                                    class="bi bi-twitter"></i></a>
-
-                            <!-- github -->
-                            <a class="btn btn-link btn-floating btn-lg text-dark m-1"
-                                href="https://github.com/hikineet-umamichang" role="button"
-                                data-mdb-ripple-color="dark"><i class="bi bi-github"></i></a>
-
-                            <!-- mail -->
-                            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#" role="button"
-                                data-mdb-ripple-color="dark"><i class="bi bi-envelope"></i></a>
-                        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 order-md-1">
+                    <div class=" ml-auto">
+                        <img src="{{ url_for('static', filename='/main/logo.jpg') }}" class="img-fluid w-75">
                     </div>
+                    <div class="text-center">
+                        <h2 class="m-2">うまみちゃんの巣</h2>
+                        <div class="container-fluid">
+                            <section>
+                                <!-- home -->
+                                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="/" role="button"
+                                    data-mdb-ripple-color="dark"><i class="bi bi-house-fill"></i></i></a>
+                                <!-- twitter -->
+                                <a class="btn btn-link btn-floating btn-lg text-dark m-1"
+                                    href="https://twitter.com/onnsentmg" role="button" data-mdb-ripple-color="dark"><i
+                                        class="bi bi-twitter"></i></a>
+
+                                <!-- github -->
+                                <a class="btn btn-link btn-floating btn-lg text-dark m-1"
+                                    href="https://github.com/hikineet-umamichang" role="button"
+                                    data-mdb-ripple-color="dark"><i class="bi bi-github"></i></a>
+
+                                <!-- mail -->
+                                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#" role="button"
+                                    data-mdb-ripple-color="dark"><i class="bi bi-envelope"></i></a>
+                            </section>
+                        </div>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="col-md-6">
-                <br>
-
-                <ul class="list ml-5"">
-                    <h3 class="d-none d-md-block">つくったもの</h3>
+                <div class="col-md-6 order-md-2">
                     <br>
-                    <li><a class="text-dark" href="/wordwolf">🐺　ワードウルフお題生成アプリ</a></li>
-                    <br>
-                    <li><a class="text-dark" href="/weather">🌥　天気アプリ</a></li>
-                    <br>
-                    <li><a class="text-dark" href="/blog">📃　ブログ</a></li>
-                    <br>
-                    <br>
-                </ul>
+                    <ul class="list-unstyled ml-5"">
+                <h3 class=" d-none d-md-block">つくったもの</h3>
+                        <br>
+                        <li><a class="text-dark" href="/wordwolf">🐺　ワードウルフお題生成アプリ</a></li>
+                        <br>
+                        <li><a class="text-dark" href="/weather">🌥　天気アプリ</a></li>
+                        <br>
+                        <li><a class="text-dark" href="/blog">📃　ブログ</a></li>
+                        <br>
+                        <br>
+                    </ul>
+                </div>
             </div>
         </div>
-
     </main>
 
 
@@ -77,7 +79,6 @@
         <!-- Copyright -->
 
     </footer>
-
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

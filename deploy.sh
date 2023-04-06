@@ -17,7 +17,8 @@ pip install -r requirements.txt
 
 # 4. Gunicorn サーバーを再起動する
 echo "Restarting Gunicorn server..."
-sudo systemctl restart gunicorn
+pkill gunicorn
+gunicorn --bind 127.0.0.1:8000 -D run:app
 
 # 5. Nginx を再起動する
 echo "Restarting Nginx server..."
