@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
         crossorigin="anonymous"></script>
 
@@ -19,30 +20,62 @@
     </header>
 
     <main>
-        <div class="container center-block  my-5">
-            <img src="{{ url_for('static', filename='/main/logo.jpg') }}" class="img-fluid">
-            <br>
-            <h2 class="container-fluid jumbotron-container">うまみちゃんの巣</h2>
-            <ul class="list-unstyled ml-5">
+        <div class="row">
+            <div class="container col-md-6">
+                <img src="{{ url_for('static', filename='/main/logo.jpg') }}" class="img-fluid img-thumbnail">
+                <div class="text-center">
+                    <h2 class="m-2">うまみちゃんの巣</h2>
+                    <div class="container-fluid">
+                        <section>
+                            <!-- home -->
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="/"
+                                role="button" data-mdb-ripple-color="dark"><i class="bi bi-house-fill"></i></i></a>
+                            <!-- twitter -->
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1"
+                                href="https://twitter.com/onnsentmg" role="button" data-mdb-ripple-color="dark"><i
+                                    class="bi bi-twitter"></i></a>
+
+                            <!-- github -->
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1"
+                                href="https://github.com/hikineet-umamichang" role="button"
+                                data-mdb-ripple-color="dark"><i class="bi bi-github"></i></a>
+
+                            <!-- mail -->
+                            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#" role="button"
+                                data-mdb-ripple-color="dark"><i class="bi bi-envelope"></i></a>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
                 <br>
-                <li><a href="/wordwolf">ワードウルフお題生成アプリ</a></li>
-                <br>
-                <li><a href="/weather">天気アプリ</a></li>
-                <br>
-                <li><a href="/blog">ブログ</a></li>
-                <br>
-                <li><a href="#">メール</a></li>
-                <br>
-                <li><a href="https://twitter.com/onnsentmg">Twitter</a></li>
-            </ul>
+
+                <ul class="list ml-5"">
+                    <h3 class="d-none d-md-block">つくったもの</h3>
+                    <br>
+                    <li><a class="text-dark" href="/wordwolf">🐺　ワードウルフお題生成アプリ</a></li>
+                    <br>
+                    <li><a class="text-dark" href="/weather">🌥　天気アプリ</a></li>
+                    <br>
+                    <li><a class="text-dark" href="/blog">📃　ブログ</a></li>
+                    <br>
+                    <br>
+                </ul>
+            </div>
         </div>
+
     </main>
 
 
-    <footer>
-        <div class="fixed-bottom container-fluid bg-secondary text-white">
-                    <p>© 2023 Umamichang. All rights reserved.</p>
+    <footer class="fixed-bottom mt-2 text-center container-fluid bg-secondary">
+        <!-- Copyright -->
+        <div class="text-dark">
+            <p><a href="/" class="text-dark">© 2023 Umamichang.</a> All rights reserved.</p>
         </div>
+        <!-- Copyright -->
+
     </footer>
 
 

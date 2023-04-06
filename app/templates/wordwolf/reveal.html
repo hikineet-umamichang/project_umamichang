@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Wolf by ChatGPT</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
+        crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -63,20 +68,36 @@
 </head>
 
 <body>
-    <h1>お題</h1>
-    <h2>Player: <span id="player-number"></span></h2>
-    <div class="word-display" id="word-display">
-        <!-- お題を表示 -->
-    </div>
-    <button class="hide-button" id="hide-word">表示</button>
-    <button class="next-button" id="next-word">次のプレイヤー</button>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <a href="{{ url_for('wordwolf.settings') }}">リセット</a>
+    <main>
+        <h1>お題</h1>
+        <h2>Player: <span id="player-number"></span></h2>
+        <div class="word-display" id="word-display">
+            <!-- お題を表示 -->
+        </div>
+        <button class="hide-button" id="hide-word">表示</button>
+        <button class="next-button" id="next-word">次のプレイヤー</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="{{ url_for('wordwolf.settings') }}">リセット</a>
+    </main>
+
+    <footer class="fixed-bottom mt-2 text-center container-fluid bg-secondary">
+        <!-- Copyright -->
+        <div class="text-dark">
+            <p><a href="/" class="text-dark">© 2023 Umamichang.</a> All rights reserved.</p>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -5,16 +5,28 @@
 {% block content %}
 <div class="container main-content bg-white">
     <h2>「{{ tag }}」タグの記事一覧</h2>
-    <ul>
-        {% for post in posts %}
-        <li>
-            <a href="{{ url_for('blog.post_detail',filename=post.filename) }}">{{ post.title }}</a>
-            <p><small>投稿日: {{ post.date }}</small></p>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row">
+            {% for i in range(posts|length) %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ posts[i].title }}</h5>
+                        <p class="card-text">{{ posts[i].date }}</p>
+                        <p>{% for j in range(posts[i].tags|length) %}
+                            <a href="{{ url_for('blog.tag_filtered', tag=posts[i].tags[j]) }}">{{ posts[i].tags[j]
+                                }}</a>
+                            {% endfor %}
+                        </p>
+                        <a href="{{ url_for('blog.post_detail',filename=posts[i].filename) }}"
+                            class="btn btn-primary">詳細を見る</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ pagination.links }}
 </div>
-
-{{ pagination.links }}
-
-{% endblock %}
+    {% endblock %}

@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
         crossorigin="anonymous"></script>
 
@@ -51,7 +52,7 @@
         </nav>
     </header>
 
-    <main>
+    <main style="padding-bottom: 120px">
         <br>
         <div class="container mt-5">
             <div class="row">
@@ -89,17 +90,30 @@
     </main>
 
 
+    <footer class="fixed-bottom mt-5 text-center container-fluid bg-secondary">
+        <!-- Copyright -->
+        <div class="text-dark">
+            <p><a href="/" class="text-dark">© 2023 Umamichang.</a> All rights reserved.</p>
+        </div>
+        <!-- Copyright -->
 
-    <footer>
-        <div class="bottom mt-5 container-fluid bg-secondary">
-            <div class="row text-white">
-                <div class="col-md-8 order-md-1">
-                    <p>© 2023 Umamichang. All rights reserved.</p>
-                </div>
-                <div class="col-md-4 order-md-2">
-                    <p><a href="https://twitter.com/onnsentmg">Twitter</a></p>
-                </div>
-            </div>
+        <div class="container">
+            <section>
+                <!-- home -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="/" role="button"
+                    data-mdb-ripple-color="dark"><i class="bi bi-house-fill"></i></i></a>
+                <!-- twitter -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://twitter.com/onnsentmg"
+                    role="button" data-mdb-ripple-color="dark"><i class="bi bi-twitter"></i></a>
+
+                <!-- github -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/hikineet-umamichang"
+                    role="button" data-mdb-ripple-color="dark"><i class="bi bi-github"></i></a>
+
+                <!-- mail -->
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#" role="button"
+                    data-mdb-ripple-color="dark"><i class="bi bi-envelope"></i></a>
+            </section>
         </div>
     </footer>
 
