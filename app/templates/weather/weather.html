@@ -14,29 +14,52 @@
 </head>
 
 <body>
+    <header>
+        <h2 class="m-3">お天気アプリ</h2>
+    </header>
+
     <main>
-        <h1>天気アプリ</h1>
-        <form method="POST">
-            <select name="city">
-                <option value="Tokyo" {% if city=="Tokyo" %}selected{% endif %}>東京</option>
-                <option value="New York" {% if city=="New York" %}selected{% endif %}>ニューヨーク</option>
-                <option value="London" {% if city=="London" %}selected{% endif %}>ロンドン</option>
-                <option value="Paris" {% if city=="Paris" %}selected{% endif %}>パリ</option>
-                <!-- その他の都市を追加 -->
-            </select>
-            <input type="submit" value="天気を表示">
-        </form>
-        {% if weather_data %}
-        <h2>{{ weather_data.name }}</h2>
-        <p>天気: {{ weather_data.weather[0].main }}</p>
-        <p>気温: {{ weather_data.main.temp }}℃</p>
-        {% endif %}
+        <div class="container main-content bg-white" style="height: 25rem;">
+            <div class="row">
+                <div class="col-md-6 order-md-1">
+                    <form method="POST" class="m-5">
+                        <select name="city" class="form-select" aria-label="Default select example">
+                            <option value="Tokyo" {% if city=="Tokyo" %}selected{% endif %}>東京</option>
+                            <option value="Kōriyama" {% if city=="Kōriyama" %}selected{% endif %}>郡山</option>
+                            <option value="Numata" {% if city=="Numata" %}selected{% endif %}>沼田</option>
+                            <option value="Nakamura" {% if city=="Nakamura" %}selected{% endif %}>中村</option>
+                            <option value="Nagahama" {% if city=="Nagahama" %}selected{% endif %}>長浜</option>
+                            <option value="Ryōtsu-minato" {% if city=="Ryōtsu-minato" %}selected{% endif %}>両津港</option>
+                            <option value="Sakaguchi" {% if city=="Sakaguchi" %}selected{% endif %}>坂口</option>
+                            <option value="Langford" {% if city=="Langford" %}selected{% endif %}>ラングフォード</option>
+                            <option value="Kashiwa" {% if city=="Kashiwa" %}selected{% endif %}>柏</option>
+                            <option value="Sapporo" {% if city=="Sapporo" %}selected{% endif %}>札幌</option>
+                            <option value="Kutchan" {% if city=="Kutchan" %}selected{% endif %}>倶知安</option>
+                            <option value="Anjo" {% if city=="Anjo" %}selected{% endif %}>安城</option>
+                            <option value="Kushiro" {% if city=="Kushiro" %}selected{% endif %}>釧路</option>
+                            <!-- その他の都市を追加 -->
+                        </select>
+                        <input type="submit" value="表示">
+                    </form>
+                </div>
+
+                <div class="col-md-6 order-md-2">
+                    <div class="m-5">
+                        {% if weather_data %}
+                        <p>{{ weather_data.name }}</p>
+                        <p>{{ weather_data.weather[0].description }}</p>
+                        <p>気温 : {{ weather_data.main.temp }}℃</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="fixed-bottom mt-2 text-center container-fluid bg-secondary">
         <!-- Copyright -->
         <div class="text-dark">
-            <p><a href="/" class="text-dark">© 2023 Umamichang.</a> All rights reserved.</p>
+            <a href="/" class="text-dark">© 2023 Umamichang. All rights reserved.</a>
         </div>
         <!-- Copyright -->
 
