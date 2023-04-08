@@ -36,7 +36,7 @@ def send_email():
             server.send_message(msg)
         flash("メールが送信されました", "success")
     except Exception as e:
-        print(e)
+        mail.logger.error(e)
         flash("メールの送信に失敗しました", "error")
 
     return redirect(url_for("mail.contact"))

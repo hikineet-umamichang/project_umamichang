@@ -20,3 +20,6 @@ __pycache__/
 
 # Prototypes
 prototype/
+
+# Log file
+flask_app.log
