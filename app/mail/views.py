@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from flask import Flask, render_template, request, flash, redirect, url_for
 from . import mail
 
+
 MAIL_SERVER = os.environ.get("MAIL_SERVER")
 MAIL_PORT = os.environ.get("MAIL_PORT")
 MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
@@ -36,7 +37,6 @@ def send_email():
             server.send_message(msg)
         flash("メールが送信されました", "success")
     except Exception as e:
-        mail.logger.error(e)
         flash("メールの送信に失敗しました", "error")
 
     return redirect(url_for("mail.contact"))
