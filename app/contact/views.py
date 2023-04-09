@@ -39,6 +39,7 @@ def contact():
                         """,
         )
 
+
         # SendGridメールオブジェクトの作成
         sendgrid_message = Mail(
             from_email=FROM_EMAIL,
@@ -52,9 +53,10 @@ def contact():
                         """,
         )
 
+
         try:
             # SendGrid APIクライアントの作成
-            sendgrid_client = SendGridAPIClient(api_key=SENDGRID_API_KEY)
+            sendgrid_client = SendGridAPIClient(api_key=SENDGRID_API_KEY,host=2525)
 
             # メール送信
             sendgrid_client.send(sendgrid_message)
