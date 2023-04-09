@@ -1,8 +1,5 @@
 import os
-import smtplib
-from email.message import EmailMessage
-from email.mime.text import MIMEText
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash
 from . import contact
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
