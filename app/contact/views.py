@@ -62,6 +62,6 @@ def contact():
             flash("お問い合わせが送信されました。ありがとうございます！", "success")
         except Exception as e:
             print(e)
-            flash("お問い合わせの送信中にエラーが発生しました。もう一度お試しください。", "error")
+            flash("お問い合わせの送信中にエラーが発生しました。もう一度お試しください。"+str(e), "error")
 
     return render_template("contact/contact.html")
