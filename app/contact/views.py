@@ -56,7 +56,7 @@ def contact():
 
         try:
             # SendGrid APIクライアントの作成
-            sendgrid_client = SendGridAPIClient(api_key=SENDGRID_API_KEY,host=2525)
+            sendgrid_client = SendGridAPIClient(api_key=SENDGRID_API_KEY)
 
             # メール送信
             sendgrid_client.send(sendgrid_message)
