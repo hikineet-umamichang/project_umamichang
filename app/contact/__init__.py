@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-mail = Blueprint("mail", __name__)
+contact = Blueprint("contact", __name__)
 
 from . import views

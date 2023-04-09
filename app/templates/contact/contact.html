@@ -15,21 +15,27 @@
 
 <body>
     <header>
-
+        <div>
+            <a href="/" class="link-dark"> ＜ Back to home</a>
+        </div>
     </header>
 
     <main>
         <div class="container">
             <h1 class="my-3">お問い合わせ</h1>
             {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
             {% endwith %}
 
-            <form action="{{ url_for('mail.send_email') }}" method="post">
+            <form action="{{ url_for('contact.contact') }}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">お名前</label>
+                    <input type="name" class="form-control" id="name" name="name" required>
+                </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>

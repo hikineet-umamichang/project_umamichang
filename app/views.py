@@ -3,7 +3,7 @@ import smtplib
 from email.message import EmailMessage
 from email.mime.text import MIMEText
 from flask import Flask, render_template, request, flash, redirect, url_for
-from . import mail
+from . import contact
 
 
 MAIL_SERVER = os.environ.get("MAIL_SERVER")
@@ -14,12 +14,12 @@ MAIL_USE_TLS = os.environ.get("MAIL_USE_TLS")
 MAIL_USE_SSL = os.environ.get("MAIL_USE_SSL")
 
 
-@mail.route("/")
+@contact.route("/")
 def contact():
     return render_template("mail/contact.html")
 
 
-@mail.route("/send_email", methods=["POST"])
+@contact.route("/send_email", methods=["POST"])
 def send_email():
     email = request.form["email"]
     subject = request.form["subject"]
@@ -33,11 +33,12 @@ def send_email():
 
     try:
         with smtplib.SMTP_SSL(MAIL_SERVER, MAIL_PORT) as server:
+            # server.starttls()
             server.login(MAIL_USERNAME, MAIL_PASSWORD)
             server.send_message(msg)
         flash("メールが送信されました", "success")
     except Exception as e:
-        # 
-        flash("メールの送信に失敗しました"+str(e), "error")
+        #
+        flash("メールの送信に失敗しました" + str(e), "error")
 
     return redirect(url_for("mail.contact"))
