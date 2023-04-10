@@ -31,7 +31,7 @@
         <div class="container  main-content bg-white my-2 p-3">
             <div class="row">
                 <form action="/wordwolf/reveal" method="POST">
-                    <div class="form-group m-2 pt-1">
+                    <div class="form-group mt-2 pt-1">
                         <label class="pt-2 form-label" for="num_players">プレーヤーの人数</label>
                         <select class="form-control" name="num_players" id="num_players">
                             {% for num in range(4, 11) %}
@@ -40,7 +40,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group m-2 pt-1">
+                    <div class="form-group mt-2 pt-1">
                         <label class="pt-2 form-label" for="genre">ジャンル</label>
                         <input class="form-control custom-select"" type=" search" name="genre" maxlength="10"
                             list="genre-sample">
@@ -55,9 +55,9 @@
                         </datalist>
                     </div>
 
-                    <div class="form-group m-2 pt-1">
+                    <div class="form-group mt-2 pt-1">
                         <label for="difficulty" class="form-label pt-2">ことばの難しさ</label>
-                        <div class="slider-container p-2 border rounded-2">
+                        <div class="slider-container pt-2 border rounded-2">
                             <input type="range" min="1" max="100" value="50" class="form-range" id="difficulty"
                                 name="difficulty">
                             <div class=" text-center">
@@ -66,9 +66,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group m-2 pt-1">
+                    <div class="form-group mt-2 pt-1">
                         <label for="difficulty" class="form-label pt-2">ことばのはなれ具合</label>
-                        <div class="slider-container p-2 border rounded-2">
+                        <div class="slider-container pt-2 border rounded-2">
                             <input type="range" min="1" max="100" value="50" class="form-range" id="distance"
                                 name="distance">
                             <div class=" text-center">
