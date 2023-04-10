@@ -1,49 +1,52 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="h-100">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}うまみちゃんのブログ{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
         crossorigin="anonymous"></script>
-
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url_for('blog.index') }}">うまみちゃんのブログ</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-right" href="{{ url_for('main.index') }}">Home</a>
+                            <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-right" href="{{ url_for('blog.tags') }}">Tags</a>
+                            <a class="nav-link" href="{{ url_for('blog.tags') }}">Tags</a>
                         </li>
-                        <li class="nav-item dropdown text-right">
-                            <a class="nav-link dropdown-toggle" aria-haspopup="true" id="navbarDropdownMenuLink"
-                                role="button" data-toggle="dropdown" aria-expanded="false">
-                                Toy box
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Works
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/wordwolf">Wordwolf by ChatGPT</a></li>
                                 <li><a class="dropdown-item" href="/weather">Weather Checker</a></li>
+                                <li><a class="dropdown-item" href="/blog">My blog</a></li>
                             </ul>
                         </li>
                     </ul>
                     <!-- 検索ボタン　あとで実装する -->
-                    <!-- <form class="d-flex ml-auto">
+                    <!-- <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
@@ -52,12 +55,12 @@
         </nav>
     </header>
 
-    <main>
-        <br>
-        <div class="container mt-5">
+
+    <main class="flex-shrink-0">
+        <div class="container">
             <div class="row">
                 <!-- メインコンテンツ -->
-                <div class="col-md-8 order-md-1">
+                <div class="col-md-8 order-md-1 my-3 py-2">
                     {% block content %}{% endblock %}
                 </div>
                 <!-- サイドバー -->
@@ -90,10 +93,10 @@
     </main>
 
 
-    <footer class="bottom mt-5 text-center bg-secondary">
+    <footer class="footer mt-auto text-center bg-secondary">
         <div>
             <!-- Copyright -->
-            <div class="text-dark">
+            <div class="container">
                 <a href="/" class="text-dark">© 2023 Umamichang. All rights reserved.</a>
             </div>
             <!-- Copyright -->
@@ -140,9 +143,10 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

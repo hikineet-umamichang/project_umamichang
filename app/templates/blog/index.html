@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}
+{% extends "blog/blog_base.html" %}
 
 {% block title %}Home - {{ super() }}{% endblock %}
 
@@ -11,13 +11,13 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ page_posts[i].title }}</h5>
                     <p class="card-text">{{ page_posts[i].date }}</p>
-                    <p>{% for j in range(page_posts[i].tags|length) %}
-                        <a href="{{ url_for('blog.tag_filtered', tag=page_posts[i].tags[j]) }}">{{ page_posts[i].tags[j]
-                            }}</a>
+                    <p>
+                        {% for j in range(page_posts[i].tags|length) %}
+                            <a class="card-text text-dark">{{ page_posts[i].tags[j]}}</a>  
                         {% endfor %}
                     </p>
                     <a href="{{ url_for('blog.post_detail',filename=page_posts[i].filename) }}"
-                        class="btn btn-primary">詳細を見る</a>
+                        class="btn btn-primary stretched-link">詳細を見る</a>
                 </div>
             </div>
         </div>

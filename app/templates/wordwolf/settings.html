@@ -1,204 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" class="h-100">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Wolf by ChatGPT</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185799318747574"
         crossorigin="anonymous"></script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-
-        h1 {
-            font-size: 28px;
-        }
-
-        .box select {
-            width: 100px;
-            font-size: 20px;
-        }
-
-        .execute-button {
-            font-size: 20px;
-        }
-
-        .input-box {
-            font-size: 20px;
-        }
-
-        .popup-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 100;
-            overflow-x: scroll;
-        }
-
-        .popup {
-            width: 90%;
-            max-width: 400px;
-            background-color: #fff;
-            padding: 20px;
-            margin: 50px auto;
-            border-radius: 5px;
-            text-align: left;
-            font-size: 16px;
-        }
-
-        .close-button {
-            background-color: #ff5b5b;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            float: right;
-            margin-top: -10px;
-            margin-right: -10px;
-        }
-
-        #clearbutton6::-webkit-search-cancel-button {
-            -webkit-appearance: none;
-            cursor: pointer;
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding-right: 0px;
-            width: 10px;
-            height: 10px;
-        }
-
-        input {
-            position: relative;
-            border: 1px solid gray;
-            border-radius: 0px;
-            padding: 5px;
-            font-size: 100%;
-            margin: 2px;
-
+        .container {
+            width: auto;
+            max-width: 680px;
+            padding: 0 15px;
         }
     </style>
 </head>
 
-<body>
-    <h1>ChatGPTがワードウルフのお題をつくってくれるツール</h1>
+<body class="d-flex flex-column h-100">
+    <header class="header">
+        <h1 class="text-center m-3" style="font-size: x-large;">ChatGPTがワードウルフのお題をつくってくれるツール</h1>
+    </header>
 
 
-    <form action="/wordwolf/reveal" method="POST">
-        <label for="num_players">プレーヤーの人数:</label>
-        <div class="box">
-            <select name="num_players" id="num_players">
-                {% for num in range(4, 11) %}
-                <option value="{{ num }}">{{ num }}</option>
-                {% endfor %}
-            </select>
+    <main class="flex-shrink-0">
+        <div class="container my-2 main-content bg-white p-2">
+            <div class="row">
+                <form action="/wordwolf/reveal" method="POST">
+                    <div class="form-group m-2 pt-1">
+                        <label class="pt-2 form-label" for="num_players">プレーヤーの人数</label>
+                        <select class="form-control" name="num_players" id="num_players">
+                            {% for num in range(4, 11) %}
+                            <option value="{{ num }}">{{ num }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group m-2 pt-1">
+                        <label class="pt-2 form-label" for="genre">ジャンル</label>
+                        <input class="form-control custom-select"" type=" search" name="genre" maxlength="10"
+                            list="genre-sample">
+                        <datalist id="genre-sample">
+                            <option value="野菜"></option>
+                            <option value="スポーツ"></option>
+                            <option value="青いもの"></option>
+                            <option value="都道府県"></option>
+                            <option value="かわいい生き物"></option>
+                            <option value="文房具"></option>
+                            <option value="花の名前"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="form-group m-2 pt-1">
+                        <label for="difficulty" class="form-label pt-2">ことばの難しさ</label>
+                        <div class="slider-container p-2 border rounded-2">
+                            <input type="range" min="1" max="100" value="50" class="form-range" id="difficulty"
+                                name="difficulty">
+                            <div class=" text-center">
+                                <span class="slider-value" id="sliderValue1">50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-2 pt-1">
+                        <label for="difficulty" class="form-label pt-2">ことばのはなれ具合</label>
+                        <div class="slider-container p-2 border rounded-2">
+                            <input type="range" min="1" max="100" value="50" class="form-range" id="distance"
+                                name="distance">
+                            <div class=" text-center">
+                                <span class="slider-value" id="sliderValue2">50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-block mt-2" type="submit">実行！</button>
+                    </div>
+                </form>
+
+                <div class="mt-5 text-center">
+                    <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#modal1">
+                        つかいかた
+                    </button>
+                </div>
+
+
+                <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="label1">つかいかた</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>こんにちは！ChatGPTを使って、楽しくワードウルフを遊ぼう！<br>
+                                    <br>
+                                    【アプリの使い方】<br>
+                                    1. 項目を入力して、「実行！」を押すとお題が表示されるよ！<br>
+                                    2. 自分のお題を見たら、次の人にスマートフォンを回して、「次の人へ回すボタン」を押そう。そうすると、お題が隠れて次のお題が表示されるよ。<br>
+                                    3. みんながお題を確認したら、ワードウルフの議論を始めよう！<br>
+                                    4. 議論が終わったら、投票を行い、最も狼だと思われる人に票を入れよう。<br>
+                                    5. 最多票を集めた人が、自分のお題を発表するよ。同じお題の人がいれば、手を挙げてね。<br>
+                                    6. 手を挙げた人がいたら、市民側の負け。いなかったら、狼がばれちゃうけど、市民側のお題を当てられたら狼側の逆転勝利だ！<br>
+                                    <br>
+                                    さあ、友達や家族と一緒に、ChatGPTでワードウルフを楽しもう！わからないことがあったら、この説明を読んでね。
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">とじる</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br>
-
-        <label for="genre">ジャンル:</label>
-        <input type="search" id="genre" size="25" name="genre" maxlength="10" list="genre-sample">
-        <datalist id="genre-sample">
-            <option value="野菜"></option>
-            <option value="スポーツ"></option>
-            <option value="青いもの"></option>
-            <option value="都道府県"></option>
-            <option value="かわいい生き物"></option>
-            <option value="文房具"></option>
-            <option value="花の名前"></option>
-        </datalist>
-
-        <br>
-        <br>
-        <label for="difficulty">ことばの難しさ:</label>
-        <div class="slider-container">
-            <input type="range" min="1" max="100" value="50" class="slider" id="difficulty" name="difficulty">
-            <span class="slider-value" id="sliderValue1">50</span>
-        </div>
-        <br>
-        <label for="distance">ことばの離れ具合:</label>
-        <div class="slider-container">
-            <input type="range" min="1" max="100" value="50" class="slider" id="distance" name="distance">
-            <span class="slider-value" id="sliderValue2">50</span>
-        </div>
-        <br>
-        <!-- <label for="genre">ジャンル:</label>
-        <input class="input-box" type="text" name="genre" id="genre" maxlength="15" required> -->
-
-        <input class="execute-button" type="submit" value="実行！">
-        <br>
-        <br>
-    </form>
-
-    <button onclick="showPopup()">つかいかた</button>
-    <div class="popup-container" id="popup-container">
-        <div class="popup">
-            <button class="close-button" onclick="hidePopup()">閉じる</button>
-            <h2>アプリの使い方</h2>
-            <p>こんにちは！「ChatGPT」を使って、楽しくワードウルフを遊ぼう！<br>
-                <br>
-                【アプリの使い方】<br>
-                1. 項目を入力して、「実行！」を押すとお題が表示されるよ！<br>
-                2. 自分のお題を見たら、次の人にスマートフォンを回して、「次の人へ回すボタン」を押そう。そうすると、お題が隠れて次のお題が表示されるよ。<br>
-                3. みんながお題を確認したら、ワードウルフの議論を始めよう！<br>
-                4. 議論が終わったら、投票を行い、最も狼だと思われる人に票を入れよう。<br>
-                5. 最多票を集めた人が、自分のお題を発表するよ。同じお題の人がいれば、手を挙げてね。<br>
-                6. 手を挙げた人がいたら、市民側の負け。いなかったら、狼がばれちゃうけど、市民側のお題を当てられたら狼側の逆転勝利だ！<br>
-                <br>
-                さあ、友達や家族と一緒に、「ChatGPT」でワードウルフを楽しもう！わからないことがあったら、この説明を読んでね。
-            </p>
-        </div>
-    </div>
+    </main>
 
 
-    <footer class="fixed-bottom mt-2 text-center container-fluid bg-secondary">
+    <footer class="footer mt-auto text-center bg-secondary">
         <!-- Copyright -->
-        <div class="text-dark">
+        <div class="container">
             <a href="/" class="text-dark">© 2023 Umamichang. All rights reserved.</a>
         </div>
         <!-- Copyright -->
     </footer>
 
     <script>
-        window.addEventListener("DOMContentLoaded", (event) => {
-            const sliders = document.getElementsByClassName("slider");
-            const outputs = document.getElementsByClassName("slider-value");
+        // Get the slider elements
+        const difficultySlider = document.getElementById('difficulty');
+        const distanceSlider = document.getElementById('distance');
 
-            for (let i = 0; i < sliders.length; i++) {
-                sliders[i].addEventListener("input", function () {
-                    outputs[i].innerHTML = this.value;
-                });
+        // Get the corresponding span elements
+        const difficultyValue = document.getElementById('sliderValue1');
+        const distanceValue = document.getElementById('sliderValue2');
 
-                // 初期値を設定する
-                outputs[i].innerHTML = sliders[i].value;
-            }
+        // Update the span elements with the initial slider values
+        difficultyValue.textContent = difficultySlider.value;
+        distanceValue.textContent = distanceSlider.value;
+
+        // Add input event listeners to the sliders
+        difficultySlider.addEventListener('input', function () {
+            difficultyValue.textContent = this.value;
         });
-        const popupContainer = document.getElementById("popup-container");
 
-        function showPopup() {
-            popupContainer.style.display = "block";
-        }
-
-        function hidePopup() {
-            popupContainer.style.display = "none";
-        }
+        distanceSlider.addEventListener('input', function () {
+            distanceValue.textContent = this.value;
+        });
     </script>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
