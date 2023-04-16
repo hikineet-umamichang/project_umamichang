@@ -1,5 +1,6 @@
 import os
 from flask import Flask, Blueprint, send_from_directory
+from config import DevelopmentConfig, ProductionConfig
 from .main import main as main_blueprint
 from .weather import weather as weather_blueprint
 from .wordwolf import wordwolf as wordwolf_blueprint
@@ -10,6 +11,17 @@ from .theme_generator import theme_generator as theme_generator_blueprint
 
 def create_app():
     app = Flask(__name__)
+
+    config_name = os.environ.get("FLASK_APP_CONFIG")
+    print("debug",config_name)
+
+    if config_name == "DevelopmentConfig":
+        app.config.from_object(DevelopmentConfig)
+    elif config_name == "ProductionConfig":
+        app.config.from_object(ProductionConfig)
+    else:
+        raise ValueError(f"Unknown config name: {config_name}")
+    
 
     app.secret_key = os.environ.get("SECRET_KEY")
 
