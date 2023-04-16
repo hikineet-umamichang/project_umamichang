@@ -24,12 +24,12 @@
 
 <body class="d-flex flex-column h-100">
     <header class="header">
-        <h1 class="text-center m-3" style="font-size: x-large;">ChatGPTがワードウルフのお題をつくってくれるツール</h1>
+        <h1 class="text-center m-3" style="font-size: x-large;">ChatGPTがお題をつくってくれるツール</h1>
     </header>
 
 
     <main class="flex-shrink-0">
-        <div class="container  main-content bg-white my-2 p-3">
+        <div class="container  main-content my-2 p-3">
             <div class="row">
                 <div class="col">
                     <h3><span id="player-number"></span>人目のお題は...</h3>
@@ -38,7 +38,8 @@
                         <button class="btn btn-outline-dark" id="hide-word">表示</button>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center border" style="min-height: 4em;">
+                    <div class="d-flex align-items-center justify-content-center border rounded-2 bg-white"
+                        style="min-height: 4em;">
                         <h3 id="word-display">
                             <!-- お題を表示 -->
                         </h3>
@@ -65,21 +66,13 @@
                                 <div class="modal-body">
                                     <p>
                                         {% for theme in themes %}
-                                            {% set current_theme = theme %}
-                                            {% set previous_theme = themes[loop.index0 - 1] if loop.index0 > 0 else none %}
-                                            {% set next_theme = themes[loop.index0 + 1] if loop.index0 < (themes|length - 1) else none %}
-                                    
-                                            {% if previous_theme is none or current_theme != previous_theme %}
-                                                {% if next_theme is none or current_theme != next_theme %}
-                                                    {{ loop.index }}人目のお題は「{{ theme }}」🐺<br>
-                                                {% else %}
-                                                    {{ loop.index }}人目のお題は「{{ theme }}」<br>
-                                                {% endif %}
+                                            {% if theme == wolf_theme %}
+                                                {{ loop.index }}人目のお題は「{{ theme }}」🐺<br>
                                             {% else %}
                                                 {{ loop.index }}人目のお題は「{{ theme }}」<br>
                                             {% endif %}
                                         {% endfor %}
-                                        </p>
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">とじる</button>

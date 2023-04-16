@@ -28,11 +28,11 @@
 
 
     <main class="flex-shrink-0">
-        <div class="container  main-content bg-white my-2 p-3">
+        <div class="container  main-content my-3">
             <div class="row">
                 <form action="/wordwolf/reveal" method="POST">
-                    <div class="form-group mt-2 pt-1">
-                        <label class="pt-2 form-label" for="num_players">プレーヤーの人数</label>
+                    <div class="form-group input-group-sm mb-3">
+                        <label class="form-label" for="num_players">プレーヤーの人数</label>
                         <select class="form-control" name="num_players" id="num_players">
                             {% for num in range(4, 11) %}
                             <option value="{{ num }}">{{ num }}</option>
@@ -40,8 +40,8 @@
                         </select>
                     </div>
 
-                    <div class="form-group mt-2 pt-1">
-                        <label class="pt-2 form-label" for="genre">ジャンル</label>
+                    <div class="form-group input-group-sm mb-3">
+                        <label class="form-label" for="genre">ジャンル</label>
                         <input class="form-control custom-select"" type=" search" name="genre" maxlength="10"
                             list="genre-sample">
                         <datalist id="genre-sample">
@@ -55,9 +55,9 @@
                         </datalist>
                     </div>
 
-                    <div class="form-group mt-2 pt-1">
-                        <label for="difficulty" class="form-label pt-2">ことばの難しさ</label>
-                        <div class="slider-container pt-2 border rounded-2">
+                    <div class="form-group mb-3">
+                        <label for="difficulty" class="form-label">ことばの難しさ</label>
+                        <div class="slider-container border rounded-2 bg-white">
                             <input type="range" min="1" max="100" value="50" class="form-range" id="difficulty"
                                 name="difficulty">
                             <div class=" text-center">
@@ -66,10 +66,10 @@
                         </div>
                     </div>
 
-                    <div class="form-group mt-2 pt-1">
-                        <label for="difficulty" class="form-label pt-2">ことばのはなれ具合</label>
-                        <div class="slider-container pt-2 border rounded-2">
-                            <input type="range" min="1" max="100" value="50" class="form-range" id="distance"
+                    <div class="form-group mb-3">
+                        <label for="difficulty" class="form-label">ことばのはなれ具合</label>
+                        <div class="slider-container border rounded-2 bg-white">
+                            <input type="range" min="1" max="100" value="50" class="form-range " id="distance"
                                 name="distance">
                             <div class=" text-center">
                                 <span class="slider-value" id="sliderValue2">50</span>

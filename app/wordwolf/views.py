@@ -53,10 +53,12 @@ def reveal():
         themes_list = [
             themes[0] if i == wolf_index else themes[1] for i in range(int(num_players))
         ]
+        wolf_theme=themes[0]
 
         return render_template(
             "wordwolf/reveal.html",
             themes=themes_list,
+            wolf_theme=wolf_theme,
             num_players=num_players,
             enumerate=enumerate,
         )
