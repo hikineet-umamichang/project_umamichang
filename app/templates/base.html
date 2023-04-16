@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}うまみちゃんのブログ{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -18,39 +18,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url_for('blog.index') }}">うまみちゃんのブログ</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('blog.tags') }}">Tags</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Works
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/wordwolf">Wordwolf by ChatGPT</a></li>
-                                <li><a class="dropdown-item" href="/weather">Weather Checker</a></li>
-                                <li><a class="dropdown-item" href="/blog">My blog</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- 検索ボタン　あとで実装する -->
-                    <!-- <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
-                </div>
+                <a class="navbar-brand" href="{{ url_for('blog.index') }}">{% block header_title %}{% endblock %}</a>
+                {%block header_content %}{% endblock %}
             </div>
         </nav>
     </header>
@@ -59,35 +28,7 @@
     <main class="flex-shrink-0">
         <div class="container">
             <div class="row">
-                <!-- メインコンテンツ -->
-                <div class="col-md-8 order-md-1 my-3 py-2">
-                    {% block content %}{% endblock %}
-                </div>
-                <!-- サイドバー -->
-                <div class="col-md-4 order-md-2">
-                    <aside class="sidebar">
-                        <div class="d-grid gap-3">
-                            <div class="p-2">
-                                <h4>最近の投稿</h4>
-                                <ul>
-                                    {% for recent_post in recent_posts %}
-                                    <li><a href="{{ url_for('blog.post_detail', filename=recent_post.filename) }}">{{
-                                            recent_post.title }}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="p-2">
-                                <h4>タグ一覧</h4>
-                                <ul>
-                                    {% for tag in tags %}
-                                    <li><a href="{{ url_for('blog.tag_filtered', tag=tag) }}">{{ tag }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
+                {% block content %}{% endblock %}
             </div>
         </div>
     </main>
@@ -100,45 +41,7 @@
                 <a href="/" class="text-dark">© 2023 Umamichang. All rights reserved.</a>
             </div>
             <!-- Copyright -->
-
-            <div class="container">
-                <section>
-                    <!-- home -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark" href="/" role="button"
-                        data-mdb-ripple-color="dark"><i class="bi bi-house-fill"></i></a>
-                    <!-- atcoder -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark mb-1"
-                        href="https://atcoder.jp/users/umami_chang" role="button" data-mdb-ripple-color="dark">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="34" height="20"
-                            viewBox="0 0 157 92">
-                            <g transform="translate(0.000000,92.000000) scale(0.100000,-0.100000)" fill="currentColor"
-                                stroke="none">
-                                <path d="M482 768 c-28 -57 -114 -237 -191 -401 l-139 -298 61 3 62 3 126 270
-                        c69 148 130 270 135 272 5 1 56 -84 114 -189 115 -209 168 -277 252 -323 49
-                        -28 60 -30 158 -30 95 0 110 3 160 28 65 34 134 97 161 149 l19 38 -56 0 c-52
-                        0 -60 -3 -101 -41 -56 -52 -101 -70 -172 -71 -68 -1 -145 30 -189 75 -31 33
-                        -165 265 -282 490 l-67 128 -51 -103z" />
-                                <path d="M960 781 c-75 -24 -174 -103 -206 -164 -14 -26 -13 -31 19 -83 l35
-                        -55 16 41 c40 99 137 164 246 164 75 0 126 -22 179 -78 32 -33 39 -36 93 -36
-                        32 0 58 4 58 8 0 16 -56 86 -96 123 -68 61 -127 83 -229 86 -49 1 -101 -1
-                        -115 -6z" />
-                            </g>
-                        </svg>
-                    </a>
-
-                    <!-- github -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark" href="https://github.com/hikineet-umamichang"
-                        role="button" data-mdb-ripple-color="dark"><i class="bi bi-github"></i></a>
-
-                    <!-- twitter -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark " href="https://twitter.com/onnsentmg"
-                        role="button" data-mdb-ripple-color="dark"><i class="bi bi-twitter"></i></a>
-
-                    <!-- mail -->
-                    <a class="btn btn-link btn-floating btn-lg text-dark" href="/contact" role="button"
-                        data-mdb-ripple-color="dark"><i class="bi bi-envelope"></i></a>
-                </section>
-            </div>
+            {% block footer %}{% endblock %}
         </div>
     </footer>
 
